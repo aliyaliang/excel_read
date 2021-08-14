@@ -1,0 +1,24 @@
+# login_info.yml中的内容就可将第一个用例登录获取token去掉
+- config:
+    name: testcase description
+    variables:
+        user: yoyo    # 变量化#
+        psw: "123456"    # 变量化
+
+
+- test:
+    name: 用例2：更新个人信息/api/v1/userinfo
+    request:
+        method: POST
+        url: http://49.235.92.12:7005/api/v1/userinfo
+        json:
+            name: $user
+            sex: F
+            age: 20
+            mail: 283340479@qq.com
+        headers:
+            Authorization: Token ${get_token($user, $psw)}    # debugtalk中的函数可直接引用到，并引用上面的变量
+    validate:
+        - eq: [status_code, 200]
+        - eq: [content.code, 0]
+        - contains: [content.message, update some data!]

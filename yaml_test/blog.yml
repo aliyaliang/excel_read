@@ -1,0 +1,19 @@
+- config:
+    name: 正则案例
+#    request:
+#        base_url: https://www.cnblogs.com
+
+
+- test:
+    name: blog案例
+    request:
+        url: https://www.cnblogs.com/yoyoketang/
+        method: GET
+    extract:
+    - title: '<title>(.*?)</title>'
+
+
+    validate:
+    - eq: [status_code, 200]
+#    - eq: ['<title>(.*?)</title>', 上海-悠悠 - 博客园]    # 将要校验的内容变成字符串，就会自动识别为要正则表达式提取的内容，然后复制前后取中间
+    - eq: [$title, 上海-悠悠 - 博客园]    # 也可先将正则表达式赋值给变量title，再在校验时使用title变量

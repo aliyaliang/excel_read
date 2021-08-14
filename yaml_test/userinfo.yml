@@ -1,0 +1,19 @@
+- config:
+    name: 测试用例名称：用户信息
+#    request:
+#        base_url: http://49.235.92.12:7005
+
+
+- test:
+    name: 接口名称描述：/userinfo
+    request:
+        method: GET
+        url: http://49.235.92.12:7005/userinfo
+
+
+    validate:
+    - eq: [status_code, 200]
+    - eq: [content.0.mail, 283340479@qq.com]
+    - len_eq:
+        - content.0.sex
+        - 1

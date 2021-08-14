@@ -1,0 +1,3 @@
+INFO     Cases.test01:test01.py:20 正在执行调用执行数据：{'path': '/api/v1/goods', 'method': 'post', 'headers': 'Content-Type: application/json', 'param_type': 'json', 'params': '{\n"goodsname": "《selenium入门到精通10》",\n"goodscode": "ps_00003",\n"merchantid": "10001",\n"merchantname": "小小",\n"goodsprice": 28,\n"stock": 888,\n"goodsgroupid": 0,\n"goodsstatus": 组1,\n"price": 21.0\n}', 'expect': '"code":3003,\n"msg":"参数不合法",\n"data":{"goodgroupid":["请填写合法的参数。"]}', 'x_y': [23, 12]}
+INFO     Api.api:api.py:57 正在调用运行接口方法。。。
+INFO     Api.api:api.py:36 正在调用post请求方法。。。

@@ -1,0 +1,49 @@
+
+- config:
+    name: testcase description
+    variables:
+#        user: yoyo    # 变量化
+        psw: "123456"    # 变量化
+    parameters:
+    -   user: ["yoyo", "test", "test1"]    # 参数化参考https://cloud.tencent.com/developer/article/1514802
+#    -   user-psw: [["yoyo", "123456"], ["test", "123456"], ["test1", "123456"]]
+#    -   mail: ["1", "2", "3"]    #2个参数生成笛卡尔积
+#    request:
+#        base_url: http://49.235.92.12:7005    # base_url不自动拼接？
+- test:
+    name: 用例1：登录/api/v1/login
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Fiddler
+
+        json:
+            username: $user    # 变量/参数化引用
+            password: $psw
+        method: POST
+        url: http://49.235.92.12:7005/api/v1/login
+    extract:
+    - token: content.token    # 返回值中通过content.token将token提取出来，并赋给变量token，在之后接口使用
+    validate:
+    - eq: [status_code, 200]
+    - eq: [headers.Content-Type, application/json]
+    - eq: [content.code, 0]
+    - contains: [content.msg, login success!]
+
+
+- test:
+    name: 用例2：更新个人信息/api/v1/userinfo
+    request:
+        method: POST
+        url: http://49.235.92.12:7005/api/v1/userinfo
+        json:
+            name: $user
+            sex: F
+            age: 20
+            mail: 283340479@qq.com
+        headers:
+            Authorization: Token $token
+    validate:
+        - eq: [status_code, 200]
+        - eq: [content.code, 0]
+        - contains: [content.message, update some data!]

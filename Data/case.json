@@ -1,0 +1,38 @@
+[
+    {
+        "path": "/api/v1/goods",
+        "method": "post",
+        "headers": "Content-Type: application/json",
+        "param_type": "json",
+        "params": "{\n\"goodsname\": \"《selenium 入门到精通》\",\n\"goodscode\": \"sp_100022\",\n\"merchantid\": \"10001\",\n\"merchantname\": \"小小\",\n\"goodsprice\": 49.9,\n\"stock\": 100,\n\"goodsgroupid\": 0,\n\"goodsstatus\": 1,\n\"price\": 21.0\n}",
+        "expect": "状态码200\ncode 0",
+        "x_y": [
+            2,
+            12
+        ]
+    },
+    {
+        "path": "/api/v1/goods",
+        "method": "post",
+        "headers": "Content-Type: application/json",
+        "param_type": "json",
+        "params": "{\n\"goodsname\": \"《selenium 入门到精通01》\",\n\"goodscode\": \"\",\n\"merchantid\": \"10001\",\n\"merchantname\": \"小小捉虫师\",\n\"goodsprice\": 49.9,\n\"stock\": 100,\n\"goodsgroupid\": 0,\n\"goodsstatus\": 1,\n\"price\": 21.0\n}",
+        "expect": "\"code\":2000,\n\"msg\":\"缺少必填项goodscode\",\n\"data\":{}",
+        "x_y": [
+            3,
+            12
+        ]
+    },
+    {
+        "path": "/api/v1/goods",
+        "method": "post",
+        "headers": "Content-Type: application/json",
+        "param_type": "json",
+        "params": "{\n\"goodsname\": \"《selenium 入门到精通》\",\n\"merchantid\": \"10001\",\n\"merchantname\": \"悠悠学堂 \",\n\"goodsprice\": 49.9,\n\"stock\": 100,\n\"goodsgroupid\": 0,\n\"goodsstatus\": 1,\n\"price\": 21.0\n}",
+        "expect": "\"code\":2000,\n\"msg\":\"缺少必填项goodscode\",\n\"data\":{}",
+        "x_y": [
+            4,
+            12
+        ]
+    }
+]
